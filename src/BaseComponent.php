@@ -18,18 +18,20 @@ class BaseComponent extends Component
         'last-month',
     ];
 
-    public function fetchPackageDownloads() :array
+    public function fetchPackageDownloads(string $package = null) :array
     {
-        $cacheKey = sprintf('dashboard-npm-tile-%s-%s', $this->type, $this->package);
+        $package = $package ?? $this->package;
+        $type = in_array($this->type, self::VALID_TYPES) ? $this->type : self::DEFAULT_TYPE;
+
+        $cacheKey = sprintf('dashboard-npm-tile-%s-%s', $this->type, $package);
         $cacheTimeout = $this->cacheTimeout ?? self::DEFAULT_CACHE_TIMEOUT;
 
         if ($this->forceRefresh === true) {
             Cache::forget($cacheKey);
         }
 
-        $downloads = Cache::remember($cacheKey, $cacheTimeout, function () {
-            $type = in_array($this->type, self::VALID_TYPES) ? $this->type : self::DEFAULT_TYPE;
-            $apiUrl = sprintf('%s/downloads/point/%s/%s', self::API_BASE_URL, $type, $this->package);
+        $downloads = Cache::remember($cacheKey, $cacheTimeout, function () use ($type, $package) {
+            $apiUrl = sprintf('%s/downloads/point/%s/%s', self::API_BASE_URL, $type, $package);
 
             $response = Http::get($apiUrl);
             $packageInfo = $response->json();
