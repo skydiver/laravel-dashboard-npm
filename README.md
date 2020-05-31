@@ -12,7 +12,7 @@ composer require skydiver/laravel-dashboard-npm
 ## Usage
 ```
 <x-dashboard>
-    <livewire:npm-tile
+    <livewire:npm-package-tile
         position="e1"
         package="vue"
         type="last-week"

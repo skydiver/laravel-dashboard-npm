@@ -7,7 +7,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class NpmTileComponent extends Component
+class NpmPackageTileComponent extends Component
 {
     const API_BASE_URL = 'https://api.npmjs.org';
     const DEFAULT_CACHE_TIMEOUT = 600;
@@ -48,7 +48,7 @@ class NpmTileComponent extends Component
 
     public function render()
     {
-        return view('dashboard-npm-tile::tile');
+        return view('dashboard-npm-tile::package-tile');
     }
 
 

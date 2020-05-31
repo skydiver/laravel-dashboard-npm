@@ -9,7 +9,7 @@ class NpmTileServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Livewire::component('npm-tile', NpmTileComponent::class);
+        Livewire::component('npm-package-tile', NpmPackageTileComponent::class);
 
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/dashboard-npm-tile'),
