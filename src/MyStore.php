@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\MyTile;
+namespace Skydiver\LaravelDashboardNpm;
 
 use Spatie\Dashboard\Models\Tile;
 
