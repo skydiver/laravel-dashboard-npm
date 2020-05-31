@@ -13,18 +13,25 @@ class NpmTileComponent extends Component
     public $package;
     public $cacheTimeout;
     public $forceRefresh;
+    public $showLogo;
 
     public $packageInfo;
 
     private $apiBaseUrl = 'https://api.npmjs.org';
     private $defaultCacheTimeout = 60;
 
-    public function mount(string $position, string $package, int $cacheTimeout = null, bool $forceRefresh = false)
-    {
+    public function mount(
+        string $position,
+        string $package,
+        int $cacheTimeout = null,
+        bool $forceRefresh = false,
+        bool $showLogo = true
+    ) {
         $this->position = $position;
         $this->package = $package;
         $this->cacheTimeout = $cacheTimeout;
         $this->forceRefresh = $forceRefresh;
+        $this->showLogo = $showLogo;
 
         $this->packageInfo = $this->fetchPackageDownloads();
     }
@@ -54,5 +61,4 @@ class NpmTileComponent extends Component
 
         return $downloads;
     }
-
 }
