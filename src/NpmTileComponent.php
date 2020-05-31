@@ -9,20 +9,28 @@ use Illuminate\Support\Facades\Http;
 
 class NpmTileComponent extends Component
 {
+    const API_BASE_URL = 'https://api.npmjs.org';
+    const DEFAULT_CACHE_TIMEOUT = 600;
+    const DEFAULT_TYPE = 'last-month';
+    const VALID_TYPES = [
+        'last-day',
+        'last-week',
+        'last-month',
+    ];
+
     public $position;
     public $package;
+    public $type;
     public $cacheTimeout;
     public $forceRefresh;
     public $showLogo;
 
     public $packageInfo;
 
-    private $apiBaseUrl = 'https://api.npmjs.org';
-    private $defaultCacheTimeout = 60;
-
     public function mount(
         string $position,
         string $package,
+        string $type = null,
         int $cacheTimeout = null,
         bool $forceRefresh = false,
         bool $showLogo = true
@@ -32,6 +40,8 @@ class NpmTileComponent extends Component
         $this->cacheTimeout = $cacheTimeout;
         $this->forceRefresh = $forceRefresh;
         $this->showLogo = $showLogo;
+
+        $this->type = in_array($type, self::VALID_TYPES) ? $type : self::DEFAULT_TYPE;
 
         $this->packageInfo = $this->fetchPackageDownloads();
     }
@@ -44,15 +54,15 @@ class NpmTileComponent extends Component
 
     private function fetchPackageDownloads() :array
     {
-        $cacheKey = sprintf('dashboard-npm-tile-%s', $this->package);
-        $cacheTimeout = $this->cacheTimeout ?? $this->defaultCacheTimeout;
+        $cacheKey = sprintf('dashboard-npm-tile-%s-%s', $this->type, $this->package);
+        $cacheTimeout = $this->cacheTimeout ?? self::DEFAULT_CACHE_TIMEOUT;
 
         if ($this->forceRefresh === true) {
             Cache::forget($cacheKey);
         }
 
         $downloads = Cache::remember($cacheKey, $cacheTimeout, function () {
-            $apiUrl = sprintf('%s/downloads/point/last-month/%s', $this->apiBaseUrl, $this->package);
+            $apiUrl = sprintf('%s/downloads/point/%s/%s', self::API_BASE_URL, $this->type, $this->package);
             $response = Http::get($apiUrl);
             $packageInfo = $response->json();
             $packageInfo['updated_at'] = Carbon::now()->toDateTimeString();
