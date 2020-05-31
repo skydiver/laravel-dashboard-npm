@@ -1,52 +1,47 @@
 {
-    "name": ":vendor/:package_name",
-    "description": ":package_description",
-    "keywords": [
-        ":vendor",
-        ":package_name"
-    ],
-    "homepage": "https://github.com/:vendor/:package_name",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": "https://:vendor.be",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^7.4",
-        ":vendor/laravel-dashboard": "^1.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Spatie\\MyTile\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Spatie\\MyTile\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Spatie\\MyTile\\MyTileServiceProvider"
-            ]
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "skydiver/laravel-dashboard-npm",
+  "description": "Show npm packages stats",
+  "keywords": [
+    "skydiver",
+    "laravel-dashboard-npm"
+  ],
+  "homepage": "https://github.com/skydiver/laravel-dashboard-npm",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Martín M.",
+      "email": "skydiver@users.noreply.github.com",
+      "homepage": "https://github.com/skydiver/",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.4",
+    "skydiver/laravel-dashboard": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Skydiver\\LaravelDashboardNpm\\": "src"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+    "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Skydiver\\LaravelDashboardNpm\\LaravelDashboardNpmServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
