@@ -4,15 +4,7 @@
         <div class="w-full text-center text-gray-800">
             <div class="text-gray-600">{{ $package }}</div>
             <div class="text-xs text-gray-500" style="font-size: 0.5rem">
-            @if ($type === 'last-day')
-                <span>Last Day Downloads</span>
-            @endif
-            @if ($type === 'last-week')
-                <span>Last Week Downloads</span>
-            @endif
-            @if ($type === 'last-month')
-                <span>Monthly Downloads</span>
-            @endif
+                @include('dashboard-npm-tile::header-type', ['type' => $type])
             </div>
             <div class="my-3 font-semibold text-3xl tracking-wide leading-none">{{ number_format($packageInfo['downloads']) }}</div>
             <div class="text-xs text-gray-600" style="font-size: 0.6rem">
