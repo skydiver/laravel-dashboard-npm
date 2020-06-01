@@ -9,7 +9,7 @@ composer require skydiver/laravel-dashboard-npm
 ```
 
 
-## Usage
+## npm package tile
 ```
 <x-dashboard>
     <livewire:npm-package-tile
@@ -18,16 +18,29 @@ composer require skydiver/laravel-dashboard-npm
         type="last-week"
         cache-timeout="60"
         :force-refresh="false"
-        :show-logo="false"
+        :show-logo="true"
     />
 </x-dashboard>
 ```
 
 
-## Available Options
+## npm packages table tile
+```
+<x-dashboard>
+    <livewire:npm-packages-table-tile
+        position="e1"
+        packages="vue,react,jquery"
+        type="last-week"
+        cache-timeout="60"
+        :force-refresh="false"
+        :show-logo="false"
+    />
+</x-dashboard>
+```
+
+## Shared options
 | Option        | Description                                           | Valid Options                   | Default    |
 |---------------|-------------------------------------------------------|---------------------------------|------------|
-| package       | npm package to fetch stats                            | -                               | -          |
 | type          | type of download                                      | last-day, last-week, last-month | last-month |
 | cache-timeout | seconds to refresh package info                       | -                               | 600        |
 | force-refresh | force refrsh package info (useful during development) | true, false                     | false      |
