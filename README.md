@@ -45,3 +45,13 @@ composer require skydiver/laravel-dashboard-npm
 | cache-timeout | seconds to refresh package info                       | -                               | 600        |
 | force-refresh | force refrsh package info (useful during development) | true, false                     | false      |
 | show-logo     | show npm logo at top right conrner                    | true, false                     | true       |
+
+
+## Demo
+* npm-package-tile
+
+![npm-package-tile](demo/npm-package-tile.png)
+
+* npm-packages-table-tile
+
+![npm-packages-table-tile](demo/npm-packages-table-tile.png)
